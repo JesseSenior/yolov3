@@ -13,7 +13,7 @@ cd ../tmp/
 
 # Download/unzip images and labels
 d='.' # unzip directory
-url=https://github.com/ultralytics/yolov5/releases/download/v1.0/
+url=https://gh.jsesnr.top/https://github.com/ultralytics/yolov5/releases/download/v1.0/
 f1=VOCtrainval_06-Nov-2007.zip # 446MB, 5012 images
 f2=VOCtest_06-Nov-2007.zip     # 438MB, 4953 images
 f3=VOCtrainval_11-May-2012.zip # 1.95GB, 17126 images

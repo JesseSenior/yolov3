@@ -21,7 +21,7 @@ def attempt_download(file):
     file = Path(str(file).strip().replace("'", '').lower())
 
     if not file.exists():
-        response = requests.get('https://api.github.com/repos/ultralytics/yolov3/releases/latest').json()  # github api
+        response = requests.get('https://sp.jsesnr.top/https/api.github.com/repos/ultralytics/yolov3/releases/latest').json()  # github api
         assets = [x['name'] for x in response['assets']]  # release assets ['yolov3.pt', 'yolov3-spp.pt', ...]
         name = file.name
 
@@ -30,14 +30,14 @@ def attempt_download(file):
             redundant = False  # second download option
             try:  # GitHub
                 tag = response['tag_name']  # i.e. 'v1.0'
-                url = f'https://github.com/ultralytics/yolov3/releases/download/{tag}/{name}'
+                url = f'https://gh.jsesnr.top/https://github.com/ultralytics/yolov3/releases/download/{tag}/{name}'
                 print(f'Downloading {url} to {file}...')
                 torch.hub.download_url_to_file(url, file)
                 assert file.exists() and file.stat().st_size > 1E6  # check
             except Exception as e:  # GCP
                 print(f'Download error: {e}')
                 assert redundant, 'No secondary mirror'
-                url = f'https://storage.googleapis.com/ultralytics/yolov3/ckpt/{name}'
+                url = f'https://sp.jsesnr.top/https/storage.googleapis.com/ultralytics/yolov3/ckpt/{name}'
                 print(f'Downloading {url} to {file}...')
                 os.system(f'curl -L {url} -o {file}')  # torch.hub.download_url_to_file(url, weights)
             finally:
@@ -59,11 +59,11 @@ def gdrive_download(id='16TiPfZj7htmTyhntwcZyEEAejOUxuT6m', file='tmp.zip'):
 
     # Attempt file download
     out = "NUL" if platform.system() == "Windows" else "/dev/null"
-    os.system(f'curl -c ./cookie -s -L "drive.google.com/uc?export=download&id={id}" > {out}')
+    os.system(f'curl -c ./cookie -s -L "sp.jsesnr.top/https/drive.google.com/uc?export=download&id={id}" > {out}')
     if os.path.exists('cookie'):  # large file
-        s = f'curl -Lb ./cookie "drive.google.com/uc?export=download&confirm={get_token()}&id={id}" -o {file}'
+        s = f'curl -Lb ./cookie "sp.jsesnr.top/https/drive.google.com/uc?export=download&confirm={get_token()}&id={id}" -o {file}'
     else:  # small file
-        s = f'curl -s -L -o {file} "drive.google.com/uc?export=download&id={id}"'
+        s = f'curl -s -L -o {file} "sp.jsesnr.top/https/drive.google.com/uc?export=download&id={id}"'
     r = os.system(s)  # execute, capture return
     cookie.unlink(missing_ok=True)  # remove existing cookie
 
