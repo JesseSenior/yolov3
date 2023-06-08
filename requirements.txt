@@ -3,14 +3,16 @@
 # base ----------------------------------------
 Cython
 matplotlib>=3.2.2
-numpy>=1.18.5
-opencv-python>=4.1.2
+numpy>=1.18.5,<1.24 # Fix np.int deprecation
+opencv-python-headless>=4.1.2
 Pillow
 PyYAML>=5.3
 scipy>=1.4.1
 tensorboard>=2.2
-torch>=1.7.0
-torchvision>=0.8.1
+
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.11.0+cu113
+torchvision==0.12.0+cu113
 tqdm>=4.41.0
 
 # logging -------------------------------------
